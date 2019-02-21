@@ -16,17 +16,19 @@ class App {
     this.express.use(express.urlencoded({ extended: false }))
   }
 
-  view () {
+  views () {
     nunjucks.configure(path.resolve(__dirname, 'app', 'views'), {
       autoescape: true,
       express: this.express,
       watch: this.isDev
     })
 
-    this.express('view engine', 'njk')
+    this.express.set('view engine', 'njk')
   }
 
-  routes () {}
+  routes () {
+    this.express.use(require('./routes'))
+  }
 }
 
 // importando uma instância do app
