@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+  {# inclui o header default #}
+  {% include "_partials/head.njk" %}
+  <body>
+    <div class="main-wrapper">
+      {# permite que qualquer outro arquivo de layout seja encaixado aqui #}
+      {% block body %}{% endblock %}
+    </div>
+  </body>
+</html>
