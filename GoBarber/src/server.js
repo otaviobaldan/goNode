@@ -2,6 +2,7 @@ const express = require('express')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const nunjucks = require('nunjucks')
+const dateFilter = require('nunjucks-date-filter')
 const path = require('path')
 const flash = require('connect-flash')
 
@@ -33,11 +34,13 @@ class App {
 
   views () {
     // configurações default do nunjunks
-    nunjucks.configure(path.resolve(__dirname, 'app', 'views'), {
+    const env = nunjucks.configure(path.resolve(__dirname, 'app', 'views'), {
       autoescape: true,
       express: this.express,
       watch: this.isDev
     })
+
+    env.addFilter('date', dateFilter)
 
     // com o uso do static a pasta passa a ser enxergada por todos os arquivos
     this.express.use(express.static(path.resolve(__dirname, 'public')))
