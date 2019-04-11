@@ -6,8 +6,6 @@ const mailConfig = require('../../config/mail')
 
 const transport = nodeMailer.createTransport(mailConfig)
 
-console.log(path.resolve(__dirname, '..', 'views', 'emails'))
-
 const handlebarOptions = {
   viewEngine: {
     extName: '.hbs',
